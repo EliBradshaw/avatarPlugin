@@ -31,6 +31,9 @@ public class AvatarEffectChecker {
         if (hasMusicDisc(inventory, "earth")) {
             applyEarthEffects(player);
         }
+        if (hasMusicDisc(inventory, "chi")) {
+            applyChiEffects(player);
+        }
         if (allowFlight) {
             player.setAllowFlight(true);
             player.setFlySpeed(0.075f);
@@ -101,5 +104,10 @@ public class AvatarEffectChecker {
     private static void applyEarthEffects(Player player) {
         player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 50, 2, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 600, 1, false, false));
+    }
+
+    private static void applyChiEffects(Player player) {
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 50, 2, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 50, 3, false, false));
     }
 }

@@ -90,7 +90,8 @@ public class AvatarAbilityHandler implements Listener {
         if (!(event.getRightClicked() instanceof Player))
             return;
         dropDisc((Player)event.getRightClicked());
-        player.sendMessage("You blocked "+ event.getRightClicked().getName() + "'s Chi!");
+        if (tryTakeLevel(player, 5))
+            player.sendMessage("You blocked "+ event.getRightClicked().getName() + "'s Chi!");
     }
 
     static void dropDisc(Player player) {
@@ -105,7 +106,7 @@ public class AvatarAbilityHandler implements Listener {
                     for (Component loreComponent : itemMeta.lore()) {
                         String loreText = serializer.serialize(loreComponent);
                         if (loreText != null && ChatColor.stripColor(loreText).equalsIgnoreCase(AvatarEffectChecker.lore)) {
-                            player.getWorld().dropItem(player.getLocation().subtract(player.getLocation().getDirection()), item);
+                            player.getWorld().dropItem(player.getLocation().subtract(player.getLocation().getDirection().multiply(6)), item);
                             player.getInventory().remove(item);
                             player.clearActivePotionEffects();
                             player.sendMessage("Your chi has been blocked!");
@@ -114,5 +115,16 @@ public class AvatarAbilityHandler implements Listener {
                 }
             }
         }
+    }
+
+    public boolean tryTakeLevel(Player player, int level) {
+        if (player.getLevel() < level) {
+            player.sendMessage("You don't have enough levels!");
+            return false;
+        }
+
+        player.setLevel(player.getLevel() - level);
+        player.sendMessage("§4-5 levels");
+        return true;
     }
 }

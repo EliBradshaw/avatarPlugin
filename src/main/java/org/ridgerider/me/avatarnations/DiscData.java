@@ -13,7 +13,7 @@ public class DiscData {
             new Disc("Chi Blocker", Material.MUSIC_DISC_13)
     };
 
-    static String[] names = (String[]) Arrays.stream(discs).map(disc -> disc.title.split(" ")[0].toLowerCase()).toArray();
+    static String[] names = {"fire", "water", "air", "earth", "chi"};
 
     public static Disc getDisc(String name) {
         int index = -1;
