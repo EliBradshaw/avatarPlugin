@@ -85,7 +85,7 @@ public class AvatarCommandExecutor implements CommandExecutor {
 
 // Create lore for the item
             ArrayList<String> lores = new ArrayList<>();
-            lores.add("This disc gives you your elemental powers");
+            lores.add(AvatarEffectChecker.lore);
 
 // Set the display name and lore for the item
             meta.displayName(displayNameComponent);

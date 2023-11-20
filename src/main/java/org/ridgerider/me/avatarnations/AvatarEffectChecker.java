@@ -13,6 +13,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class AvatarEffectChecker {
+    static String lore = "";
 
     public static void checkMusicDiscs(Player player) {
         PlayerInventory inventory = player.getInventory();
@@ -49,7 +50,7 @@ public class AvatarEffectChecker {
                         PlainTextComponentSerializer serializer = PlainTextComponentSerializer.plainText();
                         for (Component loreComponent : itemMeta.lore()) {
                             String loreText = serializer.serialize(loreComponent);
-                            if (loreText != null && ChatColor.stripColor(loreText).equalsIgnoreCase("This disc gives you your elemental powers")) {
+                            if (loreText != null && ChatColor.stripColor(loreText).equalsIgnoreCase(lore)) {
                                 return true;
                             }
                         }
