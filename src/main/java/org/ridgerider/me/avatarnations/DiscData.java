@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class DiscData {
     static Disc[] discs = {
             new Disc("Fire Nation", Material.MUSIC_DISC_PIGSTEP),
-            new Disc("Water Nation", Material.MUSIC_DISC_OTHERSIDE),
+            new Disc("Water Nation", Material.MUSIC_DISC_WAIT),
             new Disc("Air Nation", Material.MUSIC_DISC_STRAD),
             new Disc("Earth Nation", Material.MUSIC_DISC_CAT)
     };
