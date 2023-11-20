@@ -28,11 +28,20 @@ public class AvatarCommandExecutor implements CommandExecutor {
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if (!player.isOp()) {
-            sender.sendMessage("You're not opped silly!");
-            return true;
+        Player player;
+        if (args.length == 2) {
+            String playerName = args[1];
+            player = Bukkit.getPlayer(playerName);
+            if (player == null) {
+                sender.sendMessage("Player not found or not online!");
+                return true;
+            }
+        } else {
+            player = (Player) sender; // Give the disc to the command sender by default
+            if (!player.isOp()) {
+                sender.sendMessage("You're not opped silly!");
+                return true;
+            }
         }
 
         if (args.length == 0 || args.length > 2) {
@@ -60,19 +69,6 @@ public class AvatarCommandExecutor implements CommandExecutor {
                 sender.sendMessage("Invalid disc name!");
                 return true;
         }
-
-        Player targetPlayer;
-        if (args.length == 2) {
-            String playerName = args[1];
-            targetPlayer = Bukkit.getPlayer(playerName);
-            if (targetPlayer == null) {
-                sender.sendMessage("Player not found or not online!");
-                return true;
-            }
-        } else {
-            targetPlayer = player; // Give the disc to the command sender by default
-        }
-
         // Give the specified disc to the target player
         ItemStack disc = new ItemStack(discMaterial);
         ItemMeta meta = disc.getItemMeta();
@@ -93,11 +89,11 @@ public class AvatarCommandExecutor implements CommandExecutor {
             disc.setItemMeta(meta);
         }
 
-        targetPlayer.getInventory().addItem(disc);
-        targetPlayer.sendMessage("You received the " + discName + " disc!");
+        player.getInventory().addItem(disc);
+        player.sendMessage("You received the " + discName + " disc!");
 
         // Apply effects associated with the disc to the target player
-        AvatarEffectChecker.checkMusicDiscs(targetPlayer);
+        AvatarEffectChecker.checkMusicDiscs(player);
 
         return true;
     }
