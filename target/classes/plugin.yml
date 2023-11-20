@@ -1,0 +1,12 @@
+name: AvatarNations
+version: 1.0.0
+author: me
+main: org.ridgerider.me.avatarnations.AvatarNations
+description: AvatarNations plugin for handling music discs and abilities
+api-version: 1.20
+
+commands:
+  givedisc:
+    description: Gives a music disc associated with a nation
+    usage: /givedisc <nation_name>
+    permission: avatarnations.givedisc

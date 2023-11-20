@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AvatarNations:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AvatarNations_jar</output-path>
+    <root id="archive" name="AvatarNations.jar">
+      <element id="module-output" name="AvatarNations" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+    </root>
+  </artifact>
+</component>
