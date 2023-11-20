@@ -90,7 +90,7 @@ public class AvatarAbilityHandler implements Listener {
         if (!(event.getRightClicked() instanceof Player))
             return;
         dropDisc((Player)event.getRightClicked());
-        if (tryTakeLevel(player, 5))
+        if (tryTakeLevel(player, 2))
             player.sendMessage("You blocked "+ event.getRightClicked().getName() + "'s Chi!");
     }
 
