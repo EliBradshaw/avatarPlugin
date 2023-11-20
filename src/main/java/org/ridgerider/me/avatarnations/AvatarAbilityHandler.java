@@ -1,5 +1,8 @@
 package org.ridgerider.me.avatarnations;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -11,9 +14,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
@@ -72,5 +78,41 @@ public class AvatarAbilityHandler implements Listener {
         if (!(event.getRightClicked() instanceof Player))
             return;
         ((Player) event.getRightClicked()).addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 50, 2, false));
+    }
+
+    @EventHandler
+    public void onChiBlock(PlayerInteractAtEntityEvent event) {
+        Player player = event.getPlayer();
+        if (!player.getInventory().getItemInMainHand().isEmpty())
+            return;
+        if (!AvatarEffectChecker.hasMusicDisc(player.getInventory(), "chi"))
+            return;
+        if (!(event.getRightClicked() instanceof Player))
+            return;
+        dropDisc((Player)event.getRightClicked());
+        player.sendMessage("You blocked "+ event.getRightClicked().getName() + "'s Chi!");
+    }
+
+    static void dropDisc(Player player) {
+        PlayerInventory inventory = player.getInventory();
+        ItemStack[] contents = inventory.getContents();
+
+        for (ItemStack item : contents) {
+            if (item != null) {
+                ItemMeta itemMeta = item.getItemMeta();
+                if (itemMeta.hasLore()) {
+                    PlainTextComponentSerializer serializer = PlainTextComponentSerializer.plainText();
+                    for (Component loreComponent : itemMeta.lore()) {
+                        String loreText = serializer.serialize(loreComponent);
+                        if (loreText != null && ChatColor.stripColor(loreText).equalsIgnoreCase(AvatarEffectChecker.lore)) {
+                            player.getWorld().dropItem(player.getLocation().subtract(player.getLocation().getDirection()), item);
+                            player.getInventory().remove(item);
+                            player.clearActivePotionEffects();
+                            player.sendMessage("Your chi has been blocked!");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

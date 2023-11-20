@@ -9,7 +9,8 @@ public class DiscData {
             new Disc("Fire Nation", Material.MUSIC_DISC_PIGSTEP),
             new Disc("Water Nation", Material.MUSIC_DISC_WAIT),
             new Disc("Air Nation", Material.MUSIC_DISC_STRAD),
-            new Disc("Earth Nation", Material.MUSIC_DISC_CAT)
+            new Disc("Earth Nation", Material.MUSIC_DISC_CAT),
+            new Disc("Chi Blocker", Material.MUSIC_DISC_13)
     };
 
     static String[] names = (String[]) Arrays.stream(discs).map(disc -> disc.title.split(" ")[0].toLowerCase()).toArray();
