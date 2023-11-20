@@ -18,17 +18,17 @@ public class AvatarEffectChecker {
     public static void checkMusicDiscs(Player player) {
         PlayerInventory inventory = player.getInventory();
         Boolean allowFlight = false;
-        if (hasMusicDisc(inventory, Material.MUSIC_DISC_PIGSTEP, "Fire Nation")) {
+        if (hasMusicDisc(inventory, "fire")) {
             applyFireEffects(player);
         }
-        if (hasMusicDisc(inventory, Material.MUSIC_DISC_OTHERSIDE, "Water Nation")) {
+        if (hasMusicDisc(inventory, "water")) {
             applyWaterEffects(player);
         }
-        if (hasMusicDisc(inventory, Material.MUSIC_DISC_STRAD, "Air Nation")) {
+        if (hasMusicDisc(inventory, "air")) {
             applyAirEffects(player);
             allowFlight = true;
         }
-        if (hasMusicDisc(inventory, Material.MUSIC_DISC_WAIT, "Earth Nation")) {
+        if (hasMusicDisc(inventory, "earth")) {
             applyEarthEffects(player);
         }
         if (allowFlight) {
@@ -39,7 +39,10 @@ public class AvatarEffectChecker {
         }
     }
 
-    static boolean hasMusicDisc(PlayerInventory inventory, Material discMaterial, String discDisplayName) {
+    static boolean hasMusicDisc(PlayerInventory inventory, String discType) {
+        Disc disc = DiscData.getDisc(discType);
+        Material discMaterial = disc.type;
+        String discDisplayName = disc.title;
         ItemStack[] contents = inventory.getContents();
 
         for (ItemStack item : contents) {

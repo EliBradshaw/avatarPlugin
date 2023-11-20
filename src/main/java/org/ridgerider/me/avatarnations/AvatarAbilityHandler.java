@@ -27,7 +27,7 @@ public class AvatarAbilityHandler implements Listener {
         Player player = event.getPlayer();
         if (!player.getInventory().getItemInMainHand().isEmpty())
             return;
-        if (!AvatarEffectChecker.hasMusicDisc(player.getInventory(), Material.MUSIC_DISC_PIGSTEP, "Fire Nation"))
+        if (!AvatarEffectChecker.hasMusicDisc(player.getInventory(), "fire"))
             return;
         // Get the player's location and direction
         Vector direction = player.getEyeLocation().getDirection();
@@ -50,7 +50,7 @@ public class AvatarAbilityHandler implements Listener {
         Player player = event.getPlayer();
         if (!player.getInventory().getItemInMainHand().isEmpty())
             return;
-        if (!AvatarEffectChecker.hasMusicDisc(player.getInventory(), Material.MUSIC_DISC_WAIT, "Earth Nation"))
+        if (!AvatarEffectChecker.hasMusicDisc(player.getInventory(), "earth"))
             return;
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK)
             return;
@@ -67,7 +67,7 @@ public class AvatarAbilityHandler implements Listener {
         Player player = event.getPlayer();
         if (!player.getInventory().getItemInMainHand().isEmpty())
             return;
-        if (!AvatarEffectChecker.hasMusicDisc(player.getInventory(), Material.MUSIC_DISC_OTHERSIDE, "Water Nation"))
+        if (!AvatarEffectChecker.hasMusicDisc(player.getInventory(), "water"))
             return;
         if (!(event.getRightClicked() instanceof Player))
             return;

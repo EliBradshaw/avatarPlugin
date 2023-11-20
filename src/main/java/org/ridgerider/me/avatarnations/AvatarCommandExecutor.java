@@ -50,43 +50,11 @@ public class AvatarCommandExecutor implements CommandExecutor {
         }
 
         String discName = args[0].toLowerCase(); // Assuming the disc name is provided as the first argument
-
-        Material discMaterial;
-        switch (discName) {
-            case "fire":
-                discMaterial = Material.MUSIC_DISC_PIGSTEP;
-                break;
-            case "water":
-                discMaterial = Material.MUSIC_DISC_OTHERSIDE;
-                break;
-            case "air":
-                discMaterial = Material.MUSIC_DISC_STRAD;
-                break;
-            case "earth":
-                discMaterial = Material.MUSIC_DISC_WAIT;
-                break;
-            default:
-                sender.sendMessage("Invalid disc name!");
-                return true;
-        }
         // Give the specified disc to the target player
-        ItemStack disc = new ItemStack(discMaterial);
-        ItemMeta meta = disc.getItemMeta();
-        if (meta != null) {
-            String displayName = discName.substring(0, 1).toUpperCase() + discName.substring(1) + " Nation";
-
-// Create the display name without italic formatting
-            Component displayNameComponent = Component.text(displayName)
-                    .decoration(TextDecoration.ITALIC, TextDecoration.State.FALSE);
-
-// Create lore for the item
-            ArrayList<String> lores = new ArrayList<>();
-            lores.add(AvatarEffectChecker.lore);
-
-// Set the display name and lore for the item
-            meta.displayName(displayNameComponent);
-            meta.setLore(lores);
-            disc.setItemMeta(meta);
+        ItemStack disc = DiscData.getDisc(discName).createItem();
+        if (disc == null) {
+            sender.sendMessage("\""+discName+"\" is not a valid element name");
+            return true;
         }
 
         player.getInventory().addItem(disc);
