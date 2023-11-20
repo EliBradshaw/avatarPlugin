@@ -24,7 +24,7 @@ public class AvatarCommandExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player) && args.length != 2) {
-            sender.sendMessage("Only players can use this command!");
+            sender.sendMessage("Too many or too few arguments");
             return true;
         }
 
