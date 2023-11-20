@@ -10,10 +10,11 @@ public class DiscData {
             new Disc("Water Nation", Material.MUSIC_DISC_WAIT),
             new Disc("Air Nation", Material.MUSIC_DISC_STRAD),
             new Disc("Earth Nation", Material.MUSIC_DISC_CAT),
-            new Disc("Chi Blocker", Material.MUSIC_DISC_13)
+            new Disc("Chi Blocker", Material.MUSIC_DISC_13),
+            new Disc("Cabbage Man", Material.MUSIC_DISC_FAR)
     };
 
-    static String[] names = {"fire", "water", "air", "earth", "chi"};
+    static String[] names = {"fire", "water", "air", "earth", "chi", "cabbage"};
 
     public static Disc getDisc(String name) {
         int index = -1;

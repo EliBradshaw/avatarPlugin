@@ -11,6 +11,6 @@ commands:
     usage: /givedisc <nation_name>
     permission: avatarnations.givedisc
   xpgive:
-    description: give xp to another player
+    description: Give xp to another player
     usage: /xpgive <player_name> <level_amount>
     permission: avatarnations.xpgive

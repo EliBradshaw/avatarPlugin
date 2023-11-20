@@ -5,7 +5,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public class XPGiver implements CommandExecutor {
 
@@ -57,7 +56,7 @@ public class XPGiver implements CommandExecutor {
         player.setLevel(player.getLevel()-amount);
         player.sendMessage("Gave " + amount + " levels to " + target.getName());
         target.setLevel(target.getLevel()+amount);
-        player.sendMessage("Received " + amount + " levels from " + player.getName());
+        target.sendMessage("Received " + amount + " levels from " + player.getName());
         AvatarEffectChecker.checkMusicDiscs(player);
 
         return true;

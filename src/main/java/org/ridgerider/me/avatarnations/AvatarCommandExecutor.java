@@ -23,11 +23,11 @@ public class AvatarCommandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player player;
+        Player player = null;
         if (!(sender instanceof Player) && args.length != 2) {
             sender.sendMessage("Too many or too few arguments");
             return true;
-        } else {
+        } else if (sender instanceof Player) {
             player = (Player) sender; // Give the disc to the command sender by default
             if (!player.isOp()) {
                 sender.sendMessage("You're not opped silly!");
@@ -56,6 +56,8 @@ public class AvatarCommandExecutor implements CommandExecutor {
             sender.sendMessage("\""+discName+"\" is not a valid element name");
             return true;
         }
+        if (player == null)
+            return false;
 
         player.getInventory().addItem(disc);
         player.sendMessage("You received the " + discName + " disc!");

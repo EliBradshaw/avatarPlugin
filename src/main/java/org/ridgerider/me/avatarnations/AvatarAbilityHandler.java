@@ -26,6 +26,8 @@ import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.BlockIterator;
 import org.bukkit.util.Vector;
 
+import javax.swing.*;
+
 
 public class AvatarAbilityHandler implements Listener {
     @EventHandler
@@ -126,5 +128,13 @@ public class AvatarAbilityHandler implements Listener {
         player.setLevel(player.getLevel() - level);
         player.sendMessage("§4" + level + " levels");
         return true;
+    }
+
+    @EventHandler
+    public void onCabbage(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Player))
+            return;
+        if (AvatarEffectChecker.hasMusicDisc(((Player)event.getDamager()).getInventory(), "cabbage"))
+            event.setCancelled(true);
     }
 }

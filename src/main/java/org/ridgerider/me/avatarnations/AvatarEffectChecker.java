@@ -34,6 +34,10 @@ public class AvatarEffectChecker {
         if (hasMusicDisc(inventory, "chi")) {
             applyChiEffects(player);
         }
+        if (hasMusicDisc(inventory, "cabbage")) {
+            applyCabbageEffects(player);
+            allowFlight = true;
+        }
         if (allowFlight) {
             player.setAllowFlight(true);
             player.setFlySpeed(0.075f);
@@ -109,5 +113,10 @@ public class AvatarEffectChecker {
     private static void applyChiEffects(Player player) {
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 50, 2, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 50, 3, false, false));
+    }
+
+    private  static void applyCabbageEffects(Player player) {
+        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 50, 4, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 50, 0, false, false));
     }
 }
