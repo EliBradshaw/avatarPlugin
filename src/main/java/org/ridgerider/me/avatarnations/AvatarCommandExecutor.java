@@ -23,23 +23,23 @@ public class AvatarCommandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        Player player;
         if (!(sender instanceof Player) && args.length != 2) {
             sender.sendMessage("Too many or too few arguments");
             return true;
+        } else {
+            player = (Player) sender; // Give the disc to the command sender by default
+            if (!player.isOp()) {
+                sender.sendMessage("You're not opped silly!");
+                return true;
+            }
         }
 
-        Player player;
         if (args.length == 2) {
             String playerName = args[1];
             player = Bukkit.getPlayer(playerName);
             if (player == null) {
                 sender.sendMessage("Player not found or not online!");
-                return true;
-            }
-        } else {
-            player = (Player) sender; // Give the disc to the command sender by default
-            if (!player.isOp()) {
-                sender.sendMessage("You're not opped silly!");
                 return true;
             }
         }

@@ -10,3 +10,7 @@ commands:
     description: Gives a music disc associated with a nation
     usage: /givedisc <nation_name>
     permission: avatarnations.givedisc
+  xpgive:
+    description: give xp to another player
+    usage: /xpgive <player_name> <level_amount>
+    permission: avatarnations.xpgive

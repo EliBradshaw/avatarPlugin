@@ -124,7 +124,7 @@ public class AvatarAbilityHandler implements Listener {
         }
 
         player.setLevel(player.getLevel() - level);
-        player.sendMessage("§4-5 levels");
+        player.sendMessage("§4" + level + " levels");
         return true;
     }
 }

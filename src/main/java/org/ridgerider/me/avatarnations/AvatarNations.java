@@ -13,6 +13,7 @@ public final class AvatarNations extends JavaPlugin {
 
         // Registering a command
         getCommand("givedisc").setExecutor(new AvatarCommandExecutor(this));
+        getCommand("xpgive").setExecutor(new XPGiver(this));
 
         // Calling AvatarEffectChecker every second
         Bukkit.getScheduler().runTaskTimer(this, () -> {
